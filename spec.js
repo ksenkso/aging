@@ -154,6 +154,65 @@ describe('Date diff', () => {
         }))
     })
 
+    it('all same to month, to > from to days, rest - from > to', () => {
+        const from = new Date(2021, 3, 22, 10, 15, 40, 350)
+        const to = new Date(2021, 3, 23)
+        expect(dateDiff(from, to)).toEqual(makeDiff({
+            hours: 13,
+            minutes: 44,
+            seconds: 19,
+            milliseconds: 650
+        }))
+    })
+
+    it('all same to month, to > from to hours, rest - from > to', () => {
+        const from = new Date(2021, 3, 22, 10, 15, 40, 350)
+        const to = new Date(2021, 3, 23, 12)
+        expect(dateDiff(from, to)).toEqual(makeDiff({
+            days: 1,
+            hours: 1,
+            minutes: 44,
+            seconds: 19,
+            milliseconds: 650
+        }))
+    })
+
+    it('all same to month, to > from to minutes, rest - from > to', () => {
+        const from = new Date(2021, 3, 22, 10, 15, 40, 350)
+        const to = new Date(2021, 3, 23, 12, 20)
+        expect(dateDiff(from, to)).toEqual(makeDiff({
+            days: 1,
+            hours: 2,
+            minutes: 4,
+            seconds: 19,
+            milliseconds: 650
+        }))
+    })
+
+    it('all same to month, to > from to seconds, rest - from > to', () => {
+        const from = new Date(2021, 3, 22, 10, 15, 40, 350)
+        const to = new Date(2021, 3, 23, 12, 20, 50)
+        expect(dateDiff(from, to)).toEqual(makeDiff({
+            days: 1,
+            hours: 2,
+            minutes: 5,
+            seconds: 9,
+            milliseconds: 650
+        }))
+    })
+
+    it('all same to month, to > from to milliseconds', () => {
+        const from = new Date(2021, 3, 22, 10, 15, 40, 350)
+        const to = new Date(2021, 3, 23, 12, 20, 50, 800)
+        expect(dateDiff(from, to)).toEqual(makeDiff({
+            days: 1,
+            hours: 2,
+            minutes: 5,
+            seconds: 10,
+            milliseconds: 450
+        }))
+    })
+
     describe('Special cases', () => {
         it('same year, prev month, from date > to date', () => {
             const from = new Date(2021, 2, 15);
