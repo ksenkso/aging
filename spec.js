@@ -143,5 +143,35 @@ describe('Date diff', () => {
         })
     })
 
+    describe('Special cases', () => {
+        it('same year, prev month, from date > to date', () => {
+            const from = new Date(2021, 2, 15);
+            const to = new Date(2021, 3, 10);
+            expect(dateDiff(from, to)).toEqual({
+                years: 0,
+                months: 0,
+                days: 26
+            })
+        })
 
+        it('1 day of age', () => {
+            const from = new Date(2021, 2, 15);
+            const to = new Date(2021, 2, 16);
+            expect(dateDiff(from, to)).toEqual({
+                years: 0,
+                months: 0,
+                days: 1
+            })
+        })
+
+        it('from year < to year, same month, prev day', () => {
+            const from = new Date(1997, 3, 15);
+            const to = new Date(2021, 3, 14);
+            expect(dateDiff(from, to)).toEqual({
+                years: 23,
+                months: 11,
+                days: 30
+            })
+        })
+    })
 })
