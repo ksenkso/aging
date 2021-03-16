@@ -9,8 +9,14 @@
  *     milliseconds: number
  * }} DateDiff
  */
-function dateDiff(f, t) {
-    const [from, to] = [f, t]
+/**
+ *
+ * @param {Date} fromDate
+ * @param {Date} toDate
+ * @return {DateDiff}
+ */
+function dateDiff(fromDate, toDate) {
+    const [from, to] = [fromDate, toDate]
         .sort((a, b) => a - b)
         .map(getDateComponents)
 
