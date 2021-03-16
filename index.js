@@ -56,13 +56,17 @@ function dateDiff(f, t) {
         .keys(diff)
         .reverse()
         .reduce((diff, part, index, parts) => {
-            if (to[part] < 0) {
-                to[part] = partSize(part) + to[part]
-            }
-
             if (to[part] < from[part]) {
                 to[part] += partSize(part)
                 to[parts[index + 1]]--
+
+                let i = index
+                let nextPart = parts[++i]
+                while (to[nextPart] < 0 && i < parts.length) {
+                    to[nextPart] = partSize(nextPart) + to[nextPart]
+                    nextPart = parts[++i]
+                    to[nextPart]--
+                }
             }
 
             diff[part] = to[part] - from[part]
@@ -89,4 +93,3 @@ function getDateComponents(date) {
 }
 
 module.exports = dateDiff
-
