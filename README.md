@@ -30,3 +30,10 @@ console.log(diff);
 
 **Important** thing about this lib is that you will always get a positive diff: if `from` date
 is coming after the `to` date, they will be swapped before diff calculation.
+
+## Contribution
+ - Clone this repo
+ - Run `npm install`
+ - Add stuff you want
+ - Add tests
+ - Submit pull request
