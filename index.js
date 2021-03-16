@@ -23,8 +23,9 @@ function daysInMonth(month, year) {
  * @returns {DateDiff}
  */
 function dateDiff(f, t) {
-    const from = getDateComponents(f);
-    const to = getDateComponents(t);
+    const [from, to] = [f, t]
+        .sort((a, b) => a - b)
+        .map(getDateComponents)
 
     /**
      * @type {DateDiff}
