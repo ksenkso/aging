@@ -32,24 +32,42 @@ function dateDiff(f, t) {
     const diff = {
         years: 0,
         months: 0,
-        days: 0
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0
     }
 
-    if (to.days < from.days) {
-        to.days += daysInMonth(to.months, to.years)
-        to.months--
+    const partSizes = {
+        months: 12,
+        hours: 24,
+        minutes: 60,
+        seconds: 60,
+        milliseconds: 1000
     }
-    diff.days = to.days - from.days
 
-    if (to.months < from.months) {
-        to.months += 12
-        to.years--
-    }
-    diff.months = to.months - from.months
+    const partSize = (part) => part === 'days'
+        ? daysInMonth(to.months, to.years)
+        : partSizes[part]
 
-    diff.years = to.years - from.years
+    return Object
+        .keys(diff)
+        .reverse()
+        .reduce((diff, part, index, parts) => {
+            if (to[part] < 0) {
+                to[part] = partSize(part) + to[part]
+            }
 
-    return diff
+            if (to[part] < from[part]) {
+                to[part] += partSize(part)
+                to[parts[index + 1]]--
+            }
+
+            diff[part] = to[part] - from[part]
+
+            return diff
+        }, diff)
 }
 
 /**
@@ -62,7 +80,12 @@ function getDateComponents(date) {
         years: +date.getFullYear(),
         months: date.getMonth(),
         days: date.getDate(),
+        hours: date.getHours(),
+        minutes: date.getMinutes(),
+        seconds: date.getSeconds(),
+        milliseconds: date.getMilliseconds()
     }
 }
 
 module.exports = dateDiff
+
