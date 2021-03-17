@@ -25,7 +25,7 @@ console.log(diff);
 //   minutes: 5,
 //   seconds: 10,
 //   milliseconds: 450
-}
+// }
 ```
 
 **Important** thing about this lib is that you will always get a positive diff: if `from` date
