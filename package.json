@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest spec.js"
   },
-  "keywords": [],
+  "keywords": ["date", "diff", "age"],
   "author": "ksenkso",
   "license": "ISC",
   "devDependencies": {
